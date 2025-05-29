@@ -73,19 +73,6 @@
               9
             ]
           }
-        },
-        {
-          "type": "Scpeciale",
-          "encounter_rates": [
-            30,
-            5,
-            5,
-            5,
-            5,
-            20,
-            20,
-            10
-          ]
         }
       ],
       "encounters": [
