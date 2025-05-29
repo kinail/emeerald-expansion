@@ -400,6 +400,10 @@ LittlerootTown_EventScript_BirchsLabSign::
 	msgbox LittlerootTown_Text_ProfBirchsLab, MSGBOX_SIGN
 	end
 
+LittlerootTown_EventScript_TelStarter::
+	msgbox LittlerootTown_Text_TelStarter, MSGBOX_SIGN
+	end
+	
 LittlerootTown_EventScript_BrendansHouseSign::
 	lockall
 	checkplayergender
@@ -927,7 +931,7 @@ LittlerootTown_Text_WaitPlayer:
 LittlerootTown_Text_WearTheseRunningShoes:
 	.string "MOM: {PLAYER}! {PLAYER}! Did you\n"
 	.string "introduce yourself to PROF. BIRCH?\p"
-	.string "Oh! What an adorable POKéMON!\n"
+	.string "Oh! DEGEULASE!\n"
 	.string "You got it from PROF. BIRCH. How nice!\p"
 	.string "You're your father's child, all right.\n"
 	.string "You look good together with POKéMON!\p"
@@ -1007,6 +1011,9 @@ LittlerootTown_Text_PlayersHouse:
 
 LittlerootTown_Text_ProfBirchsHouse:
 	.string "PROF. BIRCH'S HOUSE$"
+
+LittlerootTown_Text_TelStarter:
+	.string "GAMER HOUSE$"
 
 LittlerootTown_Text_BirchSomethingToShowYouAtLab:
 	.string "PROF. BIRCH: Well, well, {PLAYER}{KUN}!\n"

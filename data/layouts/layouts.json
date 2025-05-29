@@ -4410,6 +4410,16 @@
       "secondary_tileset": "gTileset_MysteryEventsHouse",
       "border_filepath": "data/layouts/SootopolisCity_MysteryEventsHouse_1F_StairsUnblocked/border.bin",
       "blockdata_filepath": "data/layouts/SootopolisCity_MysteryEventsHouse_1F_StairsUnblocked/map.bin"
+    },
+    {
+      "id": "LAYOUT_TEL_STARTER",
+      "name": "TelStarter_Layout",
+      "width": 4,
+      "height": 4,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_BrendansMaysHouse",
+      "border_filepath": "data/layouts/TelStarter/border.bin",
+      "blockdata_filepath": "data/layouts/TelStarter/map.bin"
     }
   ]
 }
