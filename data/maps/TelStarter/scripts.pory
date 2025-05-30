@@ -1,0 +1,48 @@
+
+mapscripts TelStarter_MapScripts {}
+
+script TelStarter_Happy {
+    lock  
+    faceplayer  
+    showmonpic(SPECIES_EGG, 10, 3) 
+
+    msgbox(TelStarter_Happy_Text, MSGBOX_YESNO)  
+    release
+    
+    if (var(VAR_RECEIVED_EGG) == 0) {   
+        if (var(VAR_RESULT) == YES) {  
+            giveegg(SPECIES_TYRUNT)  
+            
+            if (var(VAR_RESULT) == MON_GIVEN_TO_PARTY) {
+                playfanfare(MUS_OBTAIN_ITEM) 
+                msgbox("Oeuf reçu dans ton groupe\p$")  
+            } elif (var(VAR_RESULT) == MON_GIVEN_TO_PC) {
+                playfanfare(MUS_OBTAIN_ITEM) 
+                msgbox("Oeuf reçu dans ta boîte\p$")  
+            } elif (var(VAR_RESULT) == MON_CANT_GIVE) {    
+                msgbox("T'es plein\p$") 
+            }
+            setvar(VAR_RECEIVED_EGG, 1)  
+        } else {
+            msgbox(TelStarter_Happy_notChosen) 
+        }
+    } else {
+        msgbox("Tu as déjà reçu l'œuf.\p$")  
+    }
+
+    hidemonpic 
+    waitmessage  
+    releaseall  
+    end  
+}
+
+text TelStarter_Happy_Text {
+    "Putin j'ai la fibre dans cette ville\n"
+    "Enfin ...\p"
+    "Après 7 ans à me battre pour l'avoir\p"
+    "Pour la peine je vais te donner\n un œuf de mon pokémon favoris\p$" 
+}
+
+text TelStarter_Happy_notChosen {
+    "A ok connard"  
+}
