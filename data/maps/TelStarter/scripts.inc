@@ -7,94 +7,88 @@ TelStarter_Happy::
 	lock
 # 6 "data/maps/TelStarter/scripts.pory"
 	faceplayer
-# 7 "data/maps/TelStarter/scripts.pory"
-	showmonpic SPECIES_EGG, 10, 3
-# 9 "data/maps/TelStarter/scripts.pory"
-	msgbox TelStarter_Happy_Text, MSGBOX_YESNO
-# 10 "data/maps/TelStarter/scripts.pory"
-	release
-# 13 "data/maps/TelStarter/scripts.pory"
-	compare VAR_RECEIVED_EGG, 0
+# 8 "data/maps/TelStarter/scripts.pory"
+	compare VAR_RECEIVED_EGG, 1
 	goto_if_eq TelStarter_Happy_2
-# 32 "data/maps/TelStarter/scripts.pory"
-	msgbox TelStarter_Happy_Text_3
-TelStarter_Happy_1:
+# 16 "data/maps/TelStarter/scripts.pory"
+	msgbox TelStarter_Happy_Text_1, MSGBOX_YESNO
+# 19 "data/maps/TelStarter/scripts.pory"
+	compare VAR_RESULT, YES
+	goto_if_eq TelStarter_Happy_5
 # 35 "data/maps/TelStarter/scripts.pory"
-	hidemonpic
-# 36 "data/maps/TelStarter/scripts.pory"
-	waitmessage
-# 37 "data/maps/TelStarter/scripts.pory"
+	msgbox TelStarter_Happy_Text_5
+TelStarter_Happy_4:
+# 38 "data/maps/TelStarter/scripts.pory"
 	releaseall
 	end
 
 TelStarter_Happy_2:
-# 14 "data/maps/TelStarter/scripts.pory"
-	compare VAR_RESULT, YES
-	goto_if_eq TelStarter_Happy_5
-# 29 "data/maps/TelStarter/scripts.pory"
-	msgbox TelStarter_Happy_notChosen
-	goto TelStarter_Happy_1
+# 9 "data/maps/TelStarter/scripts.pory"
+	msgbox TelStarter_Happy_Text_0
+# 11 "data/maps/TelStarter/scripts.pory"
+	waitmessage
+# 12 "data/maps/TelStarter/scripts.pory"
+	releaseall
+	end
 
 TelStarter_Happy_5:
-# 15 "data/maps/TelStarter/scripts.pory"
-	giveegg SPECIES_TYRUNT
-# 18 "data/maps/TelStarter/scripts.pory"
+# 20 "data/maps/TelStarter/scripts.pory"
+	showmonpic SPECIES_EGG, 10, 3
+# 21 "data/maps/TelStarter/scripts.pory"
+	giveegg SPECIES_CHARMANDER
+# 22 "data/maps/TelStarter/scripts.pory"
 	compare VAR_RESULT, MON_GIVEN_TO_PARTY
 	goto_if_eq TelStarter_Happy_9
-# 21 "data/maps/TelStarter/scripts.pory"
+# 26 "data/maps/TelStarter/scripts.pory"
 	compare VAR_RESULT, MON_GIVEN_TO_PC
 	goto_if_eq TelStarter_Happy_10
-# 24 "data/maps/TelStarter/scripts.pory"
-	compare VAR_RESULT, MON_CANT_GIVE
-	goto_if_eq TelStarter_Happy_11
+# 31 "data/maps/TelStarter/scripts.pory"
+	msgbox TelStarter_Happy_Text_4
 TelStarter_Happy_8:
-# 27 "data/maps/TelStarter/scripts.pory"
-	setvar VAR_RECEIVED_EGG, 1
-	goto TelStarter_Happy_1
+# 33 "data/maps/TelStarter/scripts.pory"
+	hidemonpic
+	goto TelStarter_Happy_4
 
 TelStarter_Happy_9:
-# 19 "data/maps/TelStarter/scripts.pory"
+# 23 "data/maps/TelStarter/scripts.pory"
 	playfanfare MUS_OBTAIN_ITEM
-# 20 "data/maps/TelStarter/scripts.pory"
-	msgbox TelStarter_Happy_Text_0
+# 24 "data/maps/TelStarter/scripts.pory"
+	msgbox TelStarter_Happy_Text_2
+# 25 "data/maps/TelStarter/scripts.pory"
+	setvar VAR_RECEIVED_EGG, 1
 	goto TelStarter_Happy_8
 
 TelStarter_Happy_10:
-# 22 "data/maps/TelStarter/scripts.pory"
+# 27 "data/maps/TelStarter/scripts.pory"
 	playfanfare MUS_OBTAIN_ITEM
-# 23 "data/maps/TelStarter/scripts.pory"
-	msgbox TelStarter_Happy_Text_1
-	goto TelStarter_Happy_8
-
-TelStarter_Happy_11:
-# 25 "data/maps/TelStarter/scripts.pory"
-	msgbox TelStarter_Happy_Text_2
+# 28 "data/maps/TelStarter/scripts.pory"
+	msgbox TelStarter_Happy_Text_3
+# 29 "data/maps/TelStarter/scripts.pory"
+	setvar VAR_RECEIVED_EGG, 1
 	goto TelStarter_Happy_8
 
 
 TelStarter_Happy_Text_0:
-# 20 "data/maps/TelStarter/scripts.pory"
-	.string "Oeuf reçu dans ton groupe\p$"
+# 9 "data/maps/TelStarter/scripts.pory"
+	.string "T'en veux plus hein chacal\p"
+	.string "T'en as déjà un, casse-toi.$"
 
 TelStarter_Happy_Text_1:
-# 23 "data/maps/TelStarter/scripts.pory"
-	.string "Oeuf reçu dans ta boîte\p$"
+# 16 "data/maps/TelStarter/scripts.pory"
+	.string "Putin j'ai la fibre dans cette ville,\n Enfin ...\p Après 7 ans à me battre pour l'avoir\p  Pour la peine,\n Tient un œuf de mon pokémon favori.\n Tu le veux ?$"
 
 TelStarter_Happy_Text_2:
-# 25 "data/maps/TelStarter/scripts.pory"
-	.string "T'es plein\p$"
+# 24 "data/maps/TelStarter/scripts.pory"
+	.string "Oeuf reçu !$"
 
 TelStarter_Happy_Text_3:
-# 32 "data/maps/TelStarter/scripts.pory"
-	.string "Tu as déjà reçu l'œuf.\p$"
+# 28 "data/maps/TelStarter/scripts.pory"
+	.string "Ton équipe est pleine, l'œuf a été envoyé dans le PC !\p$"
 
-TelStarter_Happy_Text::
-# 41 "data/maps/TelStarter/scripts.pory"
-	.string "Putin j'ai la fibre dans cette ville\n"
-	.string "Enfin ...\p"
-	.string "Après 7 ans à me battre pour l'avoir\p"
-	.string "Pour la peine je vais te donner\n un œuf de mon pokémon favoris\p$"
+TelStarter_Happy_Text_4:
+# 31 "data/maps/TelStarter/scripts.pory"
+	.string "T'es plein !$"
 
-TelStarter_Happy_notChosen::
-# 48 "data/maps/TelStarter/scripts.pory"
-	.string "A ok connard$"
+TelStarter_Happy_Text_5:
+# 35 "data/maps/TelStarter/scripts.pory"
+	.string "Ah ok connard$"
