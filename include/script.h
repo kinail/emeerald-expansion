@@ -1,6 +1,10 @@
 #ifndef GUARD_SCRIPT_H
 #define GUARD_SCRIPT_H
 
+
+typedef u16 (*SpecialFunc)(void);
+extern const SpecialFunc gSpecials[];
+
 struct ScriptContext;
 
 typedef bool8 (*ScrCmdFunc)(struct ScriptContext *);
@@ -153,8 +157,6 @@ static inline bool32 Script_IsAnalyzingEffects(void)
 
 static inline void Script_CheckEffectInstrumentedSpecial(u32 specialId)
 {
-    typedef u16 (*SpecialFunc)(void);
-    extern const SpecialFunc gSpecials[];
     // In ROM mirror 1.
     if (Script_IsAnalyzingEffects() && (((uintptr_t)gSpecials[specialId]) & 0xE000000) != 0xA000000)
         Script_GotoBreak_Internal();

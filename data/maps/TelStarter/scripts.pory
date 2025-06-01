@@ -17,8 +17,24 @@ script TelStarter_Happy {
     Pour la peine,\n Tient un œuf de mon pokémon favori.\n Tu le veux ?", MSGBOX_YESNO)
 
     if (var(VAR_RESULT) == YES) {
+        setvar(VAR_CUSTOM_EGG_SPECIES, SPECIES_CHARMANDER)
+        setvar(VAR_CUSTOM_EGG_LEVEL, 1)
+        setvar(VAR_CUSTOM_EGG_SHINY, 1)
+        setvar(VAR_CUSTOM_EGG_IV_HP, 31)
+        setvar(VAR_CUSTOM_EGG_IV_ATK, 31)
+        setvar(VAR_CUSTOM_EGG_IV_DEF, 31)
+        setvar(VAR_CUSTOM_EGG_IV_SPEED, 31)
+        setvar(VAR_CUSTOM_EGG_IV_SPATK, 31)
+        setvar(VAR_CUSTOM_EGG_IV_SPDEF, 31)
+        setvar(VAR_CUSTOM_EGG_NATURE, 15)
+        setvar(VAR_CUSTOM_EGG_ITEM, 0)
+        setvar(VAR_CUSTOM_EGG_MOVE1, 0)
+        setvar(VAR_CUSTOM_EGG_MOVE2, 0)
+        setvar(VAR_CUSTOM_EGG_MOVE3, 0)
+        setvar(VAR_CUSTOM_EGG_MOVE4, 0)
+
         showmonpic(SPECIES_EGG, 10, 3)
-        giveegg(SPECIES_CHARMANDER)
+        special(Special_GiveCustomEgg)
         if (var(VAR_RESULT) == MON_GIVEN_TO_PARTY) {
             playfanfare(MUS_OBTAIN_ITEM)
             msgbox("Oeuf reçu !")

@@ -274,6 +274,30 @@
 #define VAR_UNUSED_0x40FE                                0x40FE // Unused Var
 #define VAR_UNUSED_0x40FF                                0x40FF // Unused Var
 
+#define VAR_CUSTOM_EGG_SPECIES      0x4100
+#define VAR_CUSTOM_EGG_LEVEL        0x4101
+#define VAR_CUSTOM_EGG_SHINY        0x4102
+#define VAR_CUSTOM_EGG_NATURE       0x4103
+#define VAR_CUSTOM_EGG_ABILITY      0x4104
+#define VAR_CUSTOM_EGG_IV_HP        0x4105
+#define VAR_CUSTOM_EGG_IV_ATK       0x4106
+#define VAR_CUSTOM_EGG_IV_DEF       0x4107
+#define VAR_CUSTOM_EGG_IV_SPEED     0x4108
+#define VAR_CUSTOM_EGG_IV_SPATK     0x4109
+#define VAR_CUSTOM_EGG_IV_SPDEF     0x410A
+#define VAR_CUSTOM_EGG_EV_HP        0x410B
+#define VAR_CUSTOM_EGG_EV_ATK       0x410C
+#define VAR_CUSTOM_EGG_EV_DEF       0x410D
+#define VAR_CUSTOM_EGG_EV_SPEED     0x410E
+#define VAR_CUSTOM_EGG_EV_SPATK     0x410F
+#define VAR_CUSTOM_EGG_EV_SPDEF     0x4110
+#define VAR_CUSTOM_EGG_MOVE1        0x4111
+#define VAR_CUSTOM_EGG_MOVE2        0x4112
+#define VAR_CUSTOM_EGG_MOVE3        0x4113
+#define VAR_CUSTOM_EGG_MOVE4        0x4114
+#define VAR_CUSTOM_EGG_ITEM         0x4115
+#define VAR_CUSTOM_EGG_BALL         0x4116
+
 #define VARS_END                                         0x40FF
 #define VARS_COUNT                                       (VARS_END - VARS_START + 1)
 

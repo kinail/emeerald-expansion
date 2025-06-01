@@ -70,7 +70,8 @@ static EWRAM_DATA u16 sFieldEffectScriptId = 0;
 static u8 sBrailleWindowId;
 static bool8 sIsScriptedWildDouble;
 
-extern const SpecialFunc gSpecials[];
+extern u16 Special_GiveCustomEgg(void);
+  
 extern const u8 *gStdScripts[];
 extern const u8 *gStdScripts_End[];
 

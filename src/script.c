@@ -9,6 +9,8 @@
 #include "constants/flags.h"
 #include "constants/map_scripts.h"
 #include "field_message_box.h"
+#include "pokemon.h"
+#include "party_menu.h"
 
 #define RAM_SCRIPT_MAGIC 51
 
@@ -636,4 +638,98 @@ void Script_RequestWriteVar_Internal(u32 varId)
     if (SPECIAL_VARS_START <= varId && varId <= SPECIAL_VARS_END)
         return;
     Script_RequestEffects(SCREFF_V1 | SCREFF_SAVE);
+}
+
+u16 Special_GiveCustomEgg(void)
+{
+    struct Pokemon mon;
+    u16 species = VarGet(VAR_CUSTOM_EGG_SPECIES);
+    u8 level = VarGet(VAR_CUSTOM_EGG_LEVEL);
+    bool8 isShiny = VarGet(VAR_CUSTOM_EGG_SHINY);
+    u8 nature = VarGet(VAR_CUSTOM_EGG_NATURE);
+    u8 abilityNum = VarGet(VAR_CUSTOM_EGG_ABILITY);
+    u32 personality;
+
+    // Génère une personnalité avec la bonne nature
+    do {
+        personality = Random32();
+    } while (nature != GetNatureFromPersonality(personality));
+
+    // Gestion du shiny via le flag
+    if (isShiny)
+        FlagSet(FLAG_SHINY_CREATION);
+    else
+        FlagClear(FLAG_SHINY_CREATION);
+
+    // Création du Pokémon (œuf)
+    CreateMon(&mon, species, level, 32, TRUE, personality, OT_ID_PLAYER_ID, 0);
+
+    FlagClear(FLAG_SHINY_CREATION);
+
+    u8 ivs[6] = {
+        VarGet(VAR_CUSTOM_EGG_IV_HP),
+        VarGet(VAR_CUSTOM_EGG_IV_ATK),
+        VarGet(VAR_CUSTOM_EGG_IV_DEF),
+        VarGet(VAR_CUSTOM_EGG_IV_SPEED),
+        VarGet(VAR_CUSTOM_EGG_IV_SPATK),
+        VarGet(VAR_CUSTOM_EGG_IV_SPDEF)
+    };
+
+    u8 evs[6] = {
+        VarGet(VAR_CUSTOM_EGG_EV_HP),
+        VarGet(VAR_CUSTOM_EGG_EV_ATK),
+        VarGet(VAR_CUSTOM_EGG_EV_DEF),
+        VarGet(VAR_CUSTOM_EGG_EV_SPEED),
+        VarGet(VAR_CUSTOM_EGG_EV_SPATK),
+        VarGet(VAR_CUSTOM_EGG_EV_SPDEF)
+    };
+
+    u16 moves[4] = {
+        VarGet(VAR_CUSTOM_EGG_MOVE1),
+        VarGet(VAR_CUSTOM_EGG_MOVE2),
+        VarGet(VAR_CUSTOM_EGG_MOVE3),
+        VarGet(VAR_CUSTOM_EGG_MOVE4)
+    };
+
+    u16 heldItem = VarGet(VAR_CUSTOM_EGG_ITEM);
+    u8 ball = (u8)VarGet(VAR_CUSTOM_EGG_BALL);
+
+    // Paramètres custom
+    SetMonData(&mon, MON_DATA_IS_EGG, &(u8){TRUE});
+    SetMonData(&mon, MON_DATA_ABILITY_NUM, &abilityNum);
+    SetMonData(&mon, MON_DATA_HELD_ITEM, &heldItem);
+    SetMonData(&mon, MON_DATA_POKEBALL, &ball);
+
+    // Si au moins une attaque custom est demandée, on applique les moves
+    if (moves[0] || moves[1] || moves[2] || moves[3]) {
+    SetMonData(&mon, MON_DATA_MOVE1, &moves[0]);
+    SetMonData(&mon, MON_DATA_MOVE2, &moves[1]);
+    SetMonData(&mon, MON_DATA_MOVE3, &moves[2]);
+    SetMonData(&mon, MON_DATA_MOVE4, &moves[3]);
+}
+
+    // IVs
+    SetMonData(&mon, MON_DATA_HP_IV, &ivs[0]);
+    SetMonData(&mon, MON_DATA_ATK_IV, &ivs[1]);
+    SetMonData(&mon, MON_DATA_DEF_IV, &ivs[2]);
+    SetMonData(&mon, MON_DATA_SPEED_IV, &ivs[3]);
+    SetMonData(&mon, MON_DATA_SPATK_IV, &ivs[4]);
+    SetMonData(&mon, MON_DATA_SPDEF_IV, &ivs[5]);
+
+    // EVs
+    SetMonData(&mon, MON_DATA_HP_EV, &evs[0]);
+    SetMonData(&mon, MON_DATA_ATK_EV, &evs[1]);
+    SetMonData(&mon, MON_DATA_DEF_EV, &evs[2]);
+    SetMonData(&mon, MON_DATA_SPEED_EV, &evs[3]);
+    SetMonData(&mon, MON_DATA_SPATK_EV, &evs[4]);
+    SetMonData(&mon, MON_DATA_SPDEF_EV, &evs[5]);
+
+    u16 checksum = CalculateBoxMonChecksum(&mon.box);
+    SetMonData(&mon, MON_DATA_CHECKSUM, &checksum);
+    EncryptBoxMon(&mon.box);
+
+    // Donne l'œuf au joueur
+    u8 result = GiveMonToPlayer(&mon);
+    VarSet(VAR_RESULT, result);
+    return FALSE;
 }
