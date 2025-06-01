@@ -72,7 +72,7 @@
 #define NATURE_CAREFUL  23 // +SpDef -SpAtk
 #define NATURE_QUIRKY   24 // Neutral
 #define NUM_NATURES     25
-#define MON_DATA_NATURE 39
+
 // Pokémon Stats
 #define STAT_HP      0
 #define STAT_ATK     1
